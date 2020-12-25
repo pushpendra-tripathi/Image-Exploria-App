@@ -1,4 +1,4 @@
-package com.example.imageexploriaapp
+package com.example.imageexploriaapp.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
