@@ -18,7 +18,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        def unsplash_access_key = "unsplash_access_key"
         buildConfigField("String", "UNSPLASH_ACCESS_KEY", unsplash_access_key)
     }
 
