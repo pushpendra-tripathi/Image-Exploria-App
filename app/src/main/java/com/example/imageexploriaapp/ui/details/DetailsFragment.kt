@@ -1,5 +1,6 @@
 package com.example.imageexploriaapp.ui.details
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.graphics.drawable.Drawable
@@ -20,6 +21,7 @@ import com.example.imageexploriaapp.databinding.FragmentDetailsBinding
 class DetailsFragment : Fragment(R.layout.fragment_details) {
     private val args by navArgs<DetailsFragmentArgs>()
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -30,7 +32,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             Glide.with(this@DetailsFragment)
                 .load(photo.urls.full)
                 .error(R.drawable.ic_error)
-                .listener(object : RequestListener<Drawable>{
+                .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
                         e: GlideException?,
                         model: Any?,
@@ -58,11 +60,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
             textViewDescription.text = photo.description
             val uri = Uri.parse(photo.user.attributionUrl)
-            val intent = Intent(Intent.ACTION_VIEW, uri)
+            val intent = Intent(ACTION_VIEW, uri)
 
             textViewCreator.apply {
                 text = "Photo by ${photo.user.name} on Unsplash"
-                setOnClickListener{
+                setOnClickListener {
                     startActivity(intent)
                 }
                 paint.isUnderlineText = true
