@@ -3,7 +3,6 @@ package com.example.imageexploriaapp.ui.gallery
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.SearchEvent
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -17,7 +16,8 @@ import com.example.imageexploriaapp.databinding.FragmentGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapter.OnItemClickListener {
+class GalleryFragment : Fragment(R.layout.fragment_gallery),
+    UnsplashPhotoAdapter.OnItemClickListener {
     private val viewModel by viewModels<GalleryViewModel>()
 
     private var _binding: FragmentGalleryBinding? = null
@@ -34,8 +34,8 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
             recyclerView.setHasFixedSize(true)
             recyclerView.itemAnimator = null
             recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
-                header = UnsplashPhotoLoadStateAdapter{ adapter.retry() },
-                footer = UnsplashPhotoLoadStateAdapter{ adapter.retry()}
+                header = UnsplashPhotoLoadStateAdapter { adapter.retry() },
+                footer = UnsplashPhotoLoadStateAdapter { adapter.retry() }
             )
             buttonRetry.setOnClickListener {
                 adapter.retry()
@@ -56,7 +56,8 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
                 //for empty view
                 if (loadStates.source.refresh is LoadState.NotLoading
                     && loadStates.append.endOfPaginationReached
-                    && adapter.itemCount < 1){
+                    && adapter.itemCount < 1
+                ) {
                     recyclerView.isVisible = false
                     textViewEmpty.isVisible = true
                 } else {
@@ -81,9 +82,9 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery), UnsplashPhotoAdapte
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null){
+                if (query != null) {
                     binding.recyclerView.scrollToPosition(0)
                     viewModel.searchPhotos(query)
                     searchView.clearFocus()
