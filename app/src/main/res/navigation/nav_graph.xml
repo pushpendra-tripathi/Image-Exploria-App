@@ -17,10 +17,10 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.imageexploriaapp.ui.details.DetailsFragment"
-        android:label="fragment_details"
+        android:label="Image"
         tools:layout="@layout/fragment_details">
         <argument
-            android:name="Photo"
+            android:name="photo"
             app:argType="com.example.imageexploriaapp.data.UnsplashPhoto" />
     </fragment>
 </navigation>
