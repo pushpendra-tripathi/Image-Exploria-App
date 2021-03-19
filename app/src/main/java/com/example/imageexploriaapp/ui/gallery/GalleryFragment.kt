@@ -37,6 +37,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery),
                 header = UnsplashPhotoLoadStateAdapter { adapter.retry() },
                 footer = UnsplashPhotoLoadStateAdapter { adapter.retry() }
             )
+            //comment
             buttonRetry.setOnClickListener {
                 adapter.retry()
             }
